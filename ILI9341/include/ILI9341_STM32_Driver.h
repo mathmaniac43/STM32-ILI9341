@@ -120,6 +120,9 @@ typedef struct
     GPIO_TypeDef* dc_gpio_base;
     uint16_t      dc_gpio_pin;
 
+    // Connecting the reset port is optional. Leave
+    // it NULL to ensure the driver does not try
+    // to use it.
     GPIO_TypeDef* rst_gpio_base;
     uint16_t      rst_gpio_pin;
 

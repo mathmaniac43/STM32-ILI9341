@@ -148,11 +148,14 @@ void ILI9341_Set_Address(volatile ILI9341* display, uint16_t X1, uint16_t Y1, ui
 /*HARDWARE RESET*/
 void ILI9341_Reset(volatile ILI9341* display)
 {
-    HAL_GPIO_WritePin(display->rst_gpio_base, display->rst_gpio_pin, GPIO_PIN_RESET);
-    HAL_Delay(200);
-    HAL_GPIO_WritePin(display->cs_gpio_base, display->cs_gpio_pin, GPIO_PIN_RESET);
-    HAL_Delay(200);
-    HAL_GPIO_WritePin(display->rst_gpio_base, display->rst_gpio_pin, GPIO_PIN_SET);
+    if (NULL != display->rst_gpio_base)
+    {
+        HAL_GPIO_WritePin(display->rst_gpio_base, display->rst_gpio_pin, GPIO_PIN_RESET);
+        HAL_Delay(200);
+        HAL_GPIO_WritePin(display->cs_gpio_base, display->cs_gpio_pin, GPIO_PIN_RESET);
+        HAL_Delay(200);
+        HAL_GPIO_WritePin(display->rst_gpio_base, display->rst_gpio_pin, GPIO_PIN_SET);
+    }
 }
 
 /*Ser rotation of the screen - changes x0 and y0*/
@@ -194,7 +197,10 @@ void ILI9341_Set_Rotation(volatile ILI9341* display, uint8_t Rotation)
 /*Enable LCD display*/
 void ILI9341_Enable(volatile ILI9341* display)
 {
-    HAL_GPIO_WritePin(display->rst_gpio_base, display->rst_gpio_pin, GPIO_PIN_SET);
+    if (NULL != display->rst_gpio_base)
+    {
+        HAL_GPIO_WritePin(display->rst_gpio_base, display->rst_gpio_pin, GPIO_PIN_SET);
+    }
 }
 
 /*Initialize LCD display*/
