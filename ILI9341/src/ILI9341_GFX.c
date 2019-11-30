@@ -198,8 +198,8 @@ void ILI9341_Draw_Filled_Rectangle_Coord(volatile ILI9341* display, uint16_t X0,
 
 /*Draws a character (fonts imported from fonts.h) at X,Y location with specified font colour, size and Background colour*/
 /*See fonts.h implementation of font on what is required for changing to a different font when switching fonts libraries*/
-void ILI9341_Draw_Char(volatile ILI9341* display, char Character, uint8_t X,
-        uint8_t Y, uint16_t Colour, uint16_t Size, uint16_t Background_Colour) {
+void ILI9341_Draw_Char(volatile ILI9341* display, char Character, uint16_t X,
+    uint16_t Y, uint16_t Colour, uint16_t Size, uint16_t Background_Colour) {
     uint8_t function_char;
     uint8_t i, j;
 
@@ -235,8 +235,8 @@ void ILI9341_Draw_Char(volatile ILI9341* display, char Character, uint8_t X,
 
 /*Draws an array of characters (fonts imported from fonts.h) at X,Y location with specified font colour, size and Background colour*/
 /*See fonts.h implementation of font on what is required for changing to a different font when switching fonts libraries*/
-void ILI9341_Draw_Text(volatile ILI9341* display, const char* Text, uint8_t X,
-        uint8_t Y, uint16_t Colour, uint16_t Size, uint16_t Background_Colour) {
+void ILI9341_Draw_Text(volatile ILI9341* display, const char* Text, uint16_t X,
+    uint16_t Y, uint16_t Colour, uint16_t Size, uint16_t Background_Colour) {
     while (*Text) {
         ILI9341_Draw_Char(display, *Text++, X, Y, Colour, Size, Background_Colour);
         X += CHAR_WIDTH * Size;
